@@ -1,0 +1,23 @@
+####main code####
+module buffer (a,Y);
+input a;
+output Y;
+assign Y=a;
+endmodule
+
+
+####test bench####
+module buffer_t;
+reg a;
+wire Y;
+buffer  buffer_ins(a,Y);
+initial
+begin
+$dumpfile("p2.v");
+$dumpvars;
+a=0;
+#10 a=1;
+#10 a=0;
+#10 a=1;
+end
+endmodule
