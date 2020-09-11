@@ -1,0 +1,25 @@
+#### MAIN CODE ####
+
+module unigate(a,b, YNAND,YNOR);
+input a,b;
+output YNAND,YNOR;
+assign YNAND= ~(a & b);
+assign YNOR = ~(a | b);
+endmodule
+
+
+#### TEST BENCH ####
+module unigate_t;
+wire YNAND,YNOR;
+reg a,b;
+unigate unigate _ins(a,b, YNAND,YNOR);
+initial
+begin
+$dumpfile("p4b.v");
+$dumpvars;
+a=0; b=0;
+#5 a=0; b=1;
+#5 a=1; b=0;
+#5 a=1; b=1;
+end
+endmodule
