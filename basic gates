@@ -1,0 +1,36 @@
+####main code####
+
+module gates(a_in, b_in, not_op,and_op,nand_op,or_op,nor_op,xor_op,xnor_op);
+input a_in,b_in;
+output not_op,and_op,nand_op,or_op,nor_op,xor_op,xnor_op;
+assign not_op= ~a_in;
+assign and_op=a_in&b_in;
+assign nand_op=~(a_in&b_in);
+assign or_op=a_in|b_in;
+assign nor_op=~(a_in|b_in);
+assign xor_op=a_in^b_in;
+assign xnor_op=~(a_in^b_in);
+endmodule
+
+
+####test bench####
+
+module gate_t;
+reg a_in,b_in;
+wire not_op,and_op,nand_op,or_op,nor_op,xor_op,xnor_op;
+gates prog(a_in,b_in, not_op,and_op,nand_op,or_op,nor_op,xor_op,xnor_op);
+initial	
+begin
+$dumpfile(“p4a.v”);
+$dumpvars;
+a_in=0;
+b_in=0;
+#5 a_in=0;
+b_in=1;
+#5 a_in=1;
+b_in=0;
+#5 a_in=1;
+b_in=1;
+#5;
+end
+endmodule
