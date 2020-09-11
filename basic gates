@@ -1,0 +1,29 @@
+#### MAIN CODE ####
+
+module basic1(a,b,YAND,YOR,YNOT,YXOR,YXNOR);
+input a,b;
+output YAND,YOR,YNOT,YXOR,YXNOR;
+assign YAND = a & b;
+assign YOR = a | b;
+assign YNOT =~ a ;
+assign YXOR = a ^ b;
+assign YXNOR = ~(a ^ b);
+endmodule
+
+
+#### TEST BENCH ####
+
+module basic1_t;
+wire YAND,YOR,YNOT,YXOR,YXNOR;
+reg a,b;
+basic1 basic1_ins(a,b, YAND,YOR,YNOT,YXOR,YXNOR);
+initial
+begin
+$dumpfile("p4a.v");
+$dumpvars;
+a=0; b=0;
+#5 a=0; b=1;
+#5 a=1; b=0;
+#5 a=1; b=1;
+end
+endmodule
